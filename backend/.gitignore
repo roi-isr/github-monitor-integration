@@ -5,4 +5,5 @@ __pycache__/
 # Ignore files for local test
 *.json
 *.log
+*.png
 data/
