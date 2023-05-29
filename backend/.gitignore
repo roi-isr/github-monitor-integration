@@ -1,0 +1,8 @@
+venv/
+.idea/
+__pycache__/
+
+# Ignore files for local test
+*.json
+*.log
+data/
