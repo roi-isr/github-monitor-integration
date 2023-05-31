@@ -14,6 +14,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get('/')
 async def get_all_pull_requests():
     return jsonable_encoder(await db.get_all_pull_requests())

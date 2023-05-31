@@ -1,4 +1,11 @@
 venv/
 .idea/
 __pycache__/
-*.env
+
+# Ignore files for local test
+*.json
+*.log
+*.png
+
+data/
+firebase/
