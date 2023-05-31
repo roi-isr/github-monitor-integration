@@ -1,0 +1,17 @@
+li.prlist {
+  list-style-type: none;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: start;
+}
+
+li {
+  width: 300px;
+  height: 300px;
+  text-align: center;
+  margin: 5px 10px;
+}
