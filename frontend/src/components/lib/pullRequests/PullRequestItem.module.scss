@@ -1,0 +1,50 @@
+.pritem {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.userDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #000;
+  border-radius: 50%;
+}
+
+.username {
+  margin: 2px auto;
+}
+
+.prdetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.prtimes {
+  display: flex;
+  flex-direction: column;
+}
+
+h3 {
+  margin: 0;
+}
+
+hr {
+  width: 100%;
+  border-color: #000;
+  overflow: hidden;
+}
+
+.screenshotLink {
+  color: #f44336;
+  margin: 10px;
+  cursor: pointer;
+}
