@@ -23,15 +23,11 @@ function PullRequestItem(props: pullRequestItemType) {
         <h3>Title: {props.title}</h3>
       </section>
       <section className={style.prtimes}>
-        <span>Created: {props.times.close.toDateString()}</span>
-        <span>Updated: {props.times.update.toDateString()}</span>
-        <span>Closed: {props.times.close.toDateString()}</span>
+        <span>Created: {new Date(props.times.close).toDateString()}</span>
+        <span>Updated: {new Date(props.times.update).toDateString()}</span>
+        <span>Closed: {new Date(props.times.close).toDateString()}</span>
       </section>
-      <a
-        onClick={() => setShowModal(true)}
-        className={style.screenshotLink}
-        href="#"
-      >
+      <a onClick={() => setShowModal(true)} className={style.screenshotLink}>
         Show screenshot
       </a>
       {showModal && (

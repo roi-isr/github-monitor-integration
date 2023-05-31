@@ -8,14 +8,15 @@ export type layoutType = {
 };
 
 export type pullRequestItemType = {
+  id: string;
   state: string;
   title: string;
   username: string;
   userAvatarUrl: string;
   screenshotUrl: string;
   times: {
-    create: Date;
-    update: Date;
-    close: Date;
+    create: string;
+    update: string;
+    close: string;
   };
 };
