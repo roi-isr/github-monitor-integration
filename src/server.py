@@ -19,7 +19,22 @@ app.add_middleware(
 
 @app.get('/')
 async def get_all_pull_requests():
-    return jsonable_encoder(await db.get_all_pull_requests())
+    pull_request_details = await db.get_all_pull_requests()
+    return {
+        'details': [{
+            'id': str(pr_details['_id']),
+            'state': pr_details['state'],
+            'title': pr_details['title'],
+            'username': pr_details['user']['login'],
+            'userAvatarUrl': pr_details['user']['avatar_url'],
+            'screenshotUrl': pr_details.get('screenshot_url', ''),
+            'times': {
+                'create': pr_details['created_at'],
+                'update': pr_details['updated_at'],
+                'close': pr_details['closed_at'],
+            },
+            'repositoryName': pr_details.get('repository_name')
+        } for pr_details in pull_request_details]}
 
 
 @app.post('/', status_code=status.HTTP_201_CREATED)
@@ -38,7 +53,8 @@ async def monitor_pull_request(request: Request, response: Response):
         screenshot_url = firebase.save_image(image_binary=screenshot_binary)
 
     await db.save_pull_request_log(
-        {**pull_request_details, 'action': github_action_details['action'], 'screenshot_url': screenshot_url or ''}
+        {**pull_request_details, 'action': github_action_details['action'],
+         'repository_name': github_action_details['repository']['name'], 'screenshot_url': screenshot_url or ''}
     )
 
     user = pull_request_details.get("user", {}).get("login", "N/A")
