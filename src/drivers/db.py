@@ -16,16 +16,4 @@ async def save_pull_request_log(pull_request_log: dict):
 
 async def get_all_pull_requests():
     cursor = github_log_collection.find()
-    return [{
-        'id': str(pr_details['_id']),
-        'state': pr_details['state'],
-        'title': pr_details['title'],
-        'username': pr_details['user']['login'],
-        'userAvatarUrl': pr_details['user']['avatar_url'],
-        'screenshotUrl': pr_details.get('screenshot_url', ''),
-        'times': {
-            'create': pr_details['created_at'],
-            'update': pr_details['updated_at'],
-            'close': pr_details['closed_at'],
-        }
-    } for pr_details in await cursor.to_list(length=100)]
+    return await cursor.to_list(length=1000)
