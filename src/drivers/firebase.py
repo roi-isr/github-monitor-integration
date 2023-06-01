@@ -14,6 +14,5 @@ def save_image(image_binary: bytes):
     current_timestamp = datetime.now().timestamp()
     blob = bucket.blob(f'screenshots/pull_requests/{current_timestamp}.png')
     blob.upload_from_string(image_binary, content_type='image/png')
-
     blob.make_public()
     return blob.public_url

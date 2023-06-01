@@ -1,11 +1,8 @@
 import os
-import logging
-import sys
 
 from motor.motor_asyncio import AsyncIOMotorClient
 
 mongo_client = os.getenv('MONGO_URL')
-
 
 client = AsyncIOMotorClient(mongo_client)
 db = client.app
@@ -32,4 +29,3 @@ async def get_all_pull_requests():
             'close': pr_details['closed_at'],
         }
     } for pr_details in await cursor.to_list(length=100)]
-
