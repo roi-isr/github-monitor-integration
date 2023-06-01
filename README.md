@@ -5,12 +5,13 @@ To run the app, first clone it into your working environment.
 
 Then, prepare a .env file in the root folder that contains:
 
-MONGO_INITDB_ROOT_USERNAME=
-MONGO_INITDB_ROOT_PASSWORD=
-MONGO_URL=
-FIREBASE_PRIVATE_KEY_PATH=
-FRONTEND_URL=
-PORT=
+MONGO_INITDB_ROOT_USERNAME=<br>
+MONGO_INITDB_ROOT_PASSWORD=<br>
+MONGO_URL=<br>
+FIREBASE_PRIVATE_KEY_PATH=<br>
+FRONTEND_URL=<br>
+PORT=<br>
+
 
 Then, run the following docker commands in the root directory:
 
