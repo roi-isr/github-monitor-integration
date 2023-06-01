@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI, Request, Response, status
 from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
@@ -8,7 +10,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[os.getenv('FRONTEND_URL')],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -30,12 +32,13 @@ async def monitor_pull_request(request: Request, response: Response):
         response.status_code = status.HTTP_422_UNPROCESSABLE_ENTITY
         return {'message': 'No Pull Request data is provided in the payload'}
 
+    screenshot_url = None
     if 'html_url' in pull_request_details.keys():
         screenshot_binary = selenium.get_website_screenshot_binary(url=pull_request_details['html_url'])
         screenshot_url = firebase.save_image(image_binary=screenshot_binary)
 
     await db.save_pull_request_log(
-        {**pull_request_details, 'action': github_action_details['action'], 'screenshot_url': screenshot_url}
+        {**pull_request_details, 'action': github_action_details['action'], 'screenshot_url': screenshot_url or ''}
     )
 
     user = pull_request_details.get("user", {}).get("login", "N/A")
